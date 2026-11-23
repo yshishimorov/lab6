@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Hello World | Лабораторная работа №6{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card custom-card">
+            <div class="card-header card-header-gradient py-3">
+                <h5 class="mb-0 fw-bold text-primary">
+                    <i class="bi bi-terminal me-2"></i>Задание средней сложности №1: Flask «Hello World»
+                </h5>
+            </div>
+            <div class="card-body text-center p-4">
+                <div class="display-5 text-primary fw-bold mb-3">
+                    Hello, {{ name }}!
+                </div>
+                <p class="text-muted">
+                    Приветственное сообщение от сервера Flask. Вы можете передать параметр <code>?name=Имя</code> в адресной строке.
+                </p>
+
+                <hr class="my-4">
+
+                <form method="GET" action="{{ url_for('main.hello_world') }}" class="row g-2 justify-content-center">
+                    <div class="col-auto">
+                        <input type="text" name="name" class="form-control" placeholder="Введите имя..." value="{{ name }}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Поприветствовать</button>
+                    </div>
+                </form>
+
+                <div class="mt-4 p-3 bg-light rounded text-start">
+                    <div class="small fw-bold text-secondary mb-1">Пример маршрута во Flask:</div>
+                    <code class="text-dark d-block">
+                        @app.route('/hello')<br>
+                        def hello():<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return render_template('hello.html', name=name)
+                    </code>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
