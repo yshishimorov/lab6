@@ -1,0 +1,29 @@
+# Байткод Python и кэш
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Виртуальные окружения
+venv/
+.venv/
+env/
+
+# Данные экземпляра Flask и БД SQLite
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Загружаемые пользователем файлы (кроме .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# Служебные файлы ОС и IDE
+.vscode/
+.idea/
+*.swp
+Thumbs.db
