@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная | Лабораторная работа №6{% endblock %}
+
+{% block content %}
+<div class="hero-header">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <span class="badge bg-light text-primary mb-2 px-3 py-2 fw-bold">Оценка: Повышенная</span>
+            <h1 class="display-6 fw-bold">Лабораторная работа №6: Веб-программирование</h1>
+            <p class="lead mb-3">
+                Полнофункциональное веб-приложение на Flask с базой данных SQLite, шаблонизацией Jinja2,
+                адаптивным дизайном Bootstrap 5, авторскими CSS-стилями и загрузкой файлов.
+            </p>
+            <div class="d-flex flex-wrap gap-2 text-white-50">
+                <span><i class="bi bi-person-fill text-white me-1"></i>Студент: Шишиморов Ярослав Сергеевич</span>
+                <span>&bull;</span>
+                <span><i class="bi bi-people-fill text-white me-1"></i>Группа: 221141</span>
+                <span>&bull;</span>
+                <span><i class="bi bi-hash text-white me-1"></i>Вариант: 1</span>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center mt-3 mt-lg-0">
+            <div class="bg-white text-dark p-3 rounded-4 shadow-sm">
+                <div class="row text-center">
+                    <div class="col-6 border-end">
+                        <div class="fs-2 fw-bold text-primary">{{ notes_count }}</div>
+                        <div class="small text-muted">Заметок в SQLite</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="fs-2 fw-bold text-success">{{ files_count }}</div>
+                        <div class="small text-muted">Загружено файлов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-4 fw-bold text-dark">
+    <i class="bi bi-check2-square text-primary me-2"></i>Выполненные задания по Варианту 1
+</h3>
+
+<div class="row g-4">
+    <!-- Задание 1: Hello World -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 custom-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-primary">Средняя сложность №1</span>
+                    <i class="bi bi-chat-quote fs-4 text-primary"></i>
+                </div>
+                <h5 class="card-title fw-bold">Flask «Hello World»</h5>
+                <p class="card-text text-muted">
+                    Базовый роут приветствия с обработкой query-параметров и возвратом страницы на Flask.
+                </p>
+                <a href="{{ url_for('main.hello_world') }}" class="btn btn-outline-primary btn-sm">
+                    Открыть страницу <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Задание 3: Статическая страница + CSS -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 custom-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-info text-dark">Средняя сложность №3</span>
+                    <i class="bi bi-palette fs-4 text-info"></i>
+                </div>
+                <h5 class="card-title fw-bold">Статическая страница + CSS</h5>
+                <p class="card-text text-muted">
+                    Демонстрация подключения внешнего CSS-файла, оформления карточек, теней, градиентов и кастомной типографики.
+                </p>
+                <a href="{{ url_for('main.static_demo') }}" class="btn btn-outline-info btn-sm">
+                    Смотреть стили <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Задание 5: Bootstrap -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 custom-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-secondary">Средняя сложность №5</span>
+                    <i class="bi bi-bootstrap fs-4 text-purple" style="color: #6f42c1;"></i>
+                </div>
+                <h5 class="card-title fw-bold">Страница с Bootstrap</h5>
+                <p class="card-text text-muted">
+                    Полноценная адаптивная вёрстка всего проекта на Bootstrap 5: сетка, навигация, flash-уведомления, модальные окна и формы.
+                </p>
+                <span class="text-success small fw-semibold"><i class="bi bi-check-circle me-1"></i>Интегрирован во все страницы</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Задание 1 Повышенная: SQLite CRUD -->
+    <div class="col-md-6 col-lg-6">
+        <div class="card h-100 custom-card border-top border-4 border-warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-warning text-dark">Повышенная сложность №1</span>
+                    <i class="bi bi-database-check fs-3 text-warning"></i>
+                </div>
+                <h5 class="card-title fw-bold">Flask с базой SQLite (CRUD)</h5>
+                <p class="card-text text-muted">
+                    Полноценный модуль работы с реляционной БД: Create (создание заметки), Read (список, фильтрация, поиск, детали), Update (редактирование) и Delete (удаление).
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('main.notes_list') }}" class="btn btn-warning text-dark btn-sm fw-semibold">
+                        Управление записями <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <a href="{{ url_for('main.note_create') }}" class="btn btn-outline-secondary btn-sm">
+                        + Добавить заметку
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Задание 4 Повышенная: Загрузка файла через форму -->
+    <div class="col-md-6 col-lg-6">
+        <div class="card h-100 custom-card border-top border-4 border-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-success">Повышенная сложность №4</span>
+                    <i class="bi bi-cloud-arrow-up fs-3 text-success"></i>
+                </div>
+                <h5 class="card-title fw-bold">Загрузка файла через форму</h5>
+                <p class="card-text text-muted">
+                    Веб-форма с <code>enctype="multipart/form-data"</code>, проверка расширений (белый список), защита имени файла через <code>secure_filename</code>, скачивание и удаление.
+                </p>
+                <a href="{{ url_for('main.upload_file') }}" class="btn btn-success btn-sm fw-semibold">
+                    Перейти к загрузке <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
