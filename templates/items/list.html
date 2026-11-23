@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}База SQLite (CRUD) | Заметки{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <span class="badge bg-warning text-dark px-3 py-2">Задание повышенной сложности №1</span>
+        <h2 class="fw-bold mt-2 mb-0">Управление заметками (SQLite CRUD)</h2>
+    </div>
+    <a href="{{ url_for('main.note_create') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>Создать новую заметку
+    </a>
+</div>
+
+<!-- Панель поиска и фильтрации -->
+<div class="card custom-card mb-4 p-3">
+    <form method="GET" action="{{ url_for('main.notes_list') }}" class="row g-3 align-items-center">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
+                <input type="text" name="search" class="form-control" placeholder="Поиск по названию или тексту..." value="{{ current_search }}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <label class="input-group-text bg-light"><i class="bi bi-tag"></i></label>
+                <select name="category" class="form-select">
+                    <option value="Все" {% if current_category == 'Все' %}selected{% endif %}>Все категории</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" {% if current_category == cat %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+            <button type="submit" class="btn btn-secondary w-100">Найти</button>
+            {% if current_search or current_category != 'Все' %}
+                <a href="{{ url_for('main.notes_list') }}" class="btn btn-outline-secondary" title="Сбросить фильтры">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<!-- Список заметок -->
+{% if notes %}
+    <div class="row g-4">
+        {% for note in notes %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card custom-card h-100 d-flex flex-column">
+                    <div class="card-body flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-info text-dark">{{ note['category'] }}</span>
+                            <span class="text-muted small">ID: #{{ note['id'] }}</span>
+                        </div>
+                        <h5 class="card-title fw-bold">
+                            <a href="{{ url_for('main.note_detail', note_id=note['id']) }}" class="text-decoration-none text-dark">
+                                {{ note['title'] }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-secondary small">
+                            {{ note['content'][:140] }}{% if note['content']|length > 140 %}...{% endif %}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center pb-3">
+                        <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i>{{ note['created_at'][:10] }}</span>
+                        <div class="btn-group btn-group-sm">
+                            <a href="{{ url_for('main.note_detail', note_id=note['id']) }}" class="btn btn-outline-primary" title="Просмотр">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{{ url_for('main.note_edit', note_id=note['id']) }}" class="btn btn-outline-secondary" title="Редактировать">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="{{ url_for('main.note_delete', note_id=note['id']) }}" class="d-inline" data-confirm="Удалить заметку «{{ note['title'] }}»?">
+                                <button type="submit" class="btn btn-outline-danger" title="Удалить">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-light text-center py-5 shadow-sm rounded-4">
+        <i class="bi bi-inbox fs-1 text-muted d-block mb-3"></i>
+        <h4 class="fw-bold text-secondary">Заметки не найдены</h4>
+        <p class="text-muted mb-3">По вашему запросу нет записей или база данных пуста.</p>
+        <a href="{{ url_for('main.note_create') }}" class="btn btn-primary">Создать первую заметку</a>
+    </div>
+{% endif %}
+{% endblock %}
