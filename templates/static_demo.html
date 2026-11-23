@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Статическая страница + CSS | Лабораторная работа №6{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <span class="badge bg-info text-dark px-3 py-2">Задание средней сложности №3</span>
+    <h2 class="fw-bold mt-2">Статическая страница и пользовательские стили CSS</h2>
+    <p class="text-muted">
+        Данная страница демонстрирует интеграцию внешних статических ресурсов (CSS файл <code>static/css/style.css</code>),
+        кастомные градиенты, карточки с эффектами наведения, декоративные бейджи и независимую типографику.
+    </p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="css-showcase-box shadow">
+            <h3 class="fw-bold mb-2">CSS Градиенты & Тени</h3>
+            <p class="mb-4 text-white-50">
+                Элемент стилизован классом <code>.css-showcase-box</code> с использованием линейных градиентов,
+                псевдоэлементов <code>::after</code> и мягких CSS-теней.
+            </p>
+            <div class="d-flex gap-2">
+                <span class="css-badge-custom css-badge-purple">Custom Badge</span>
+                <span class="css-badge-custom css-badge-blue">Flexbox</span>
+                <span class="css-badge-custom css-badge-teal">Transitions</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card custom-card h-100 p-4">
+            <h4 class="fw-bold text-dark mb-3"><i class="bi bi-file-earmark-code me-2 text-primary"></i>Подключение в Jinja2</h4>
+            <p class="text-secondary">
+                В шаблонизаторе Jinja2 путь к статическим файлам генерируется с помощью хелпера <code>url_for('static', filename='...')</code>:
+            </p>
+            <pre class="bg-light p-3 rounded border"><code>&lt;link rel="stylesheet" 
+      href="{{ '{{' }} url_for('static', filename='css/style.css') {{ '}}' }}"&gt;</code></pre>
+            <ul class="text-secondary small mb-0">
+                <li>Автоматическое кэширование и правильный MIME-тип <code>text/css</code>.</li>
+                <li>CSS-переменные для глобальной палитры (цвета, радиусы, тени).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="p-3 bg-white rounded-3 shadow-sm border-start border-4 border-primary">
+            <div class="fw-bold text-primary">CSS-переменные :root</div>
+            <div class="small text-muted">Единая палитра темы для адаптивности и простоты поддержки кода.</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="p-3 bg-white rounded-3 shadow-sm border-start border-4 border-info">
+            <div class="fw-bold text-info">Плавные переходы hover</div>
+            <div class="small text-muted">Интерактивный отклик карточек при наведении курсора мыши.</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="p-3 bg-white rounded-3 shadow-sm border-start border-4 border-success">
+            <div class="fw-bold text-success">Модульность структуры</div>
+            <div class="small text-muted">Разделение CSS по директориям <code>static/css/</code> и шаблонов <code>templates/</code>.</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

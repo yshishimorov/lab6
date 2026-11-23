@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Авторские стили для Лабораторной работы №6 (Задание средней сложности №3)
+   Студент: Шишиморов Ярослав Сергеевич, гр. 221141, Вариант 1
+   ========================================================================== */
+
+:root {
+    --brand-primary: #2563eb;
+    --brand-primary-hover: #1d4ed8;
+    --brand-secondary: #0d9488;
+    --brand-dark: #0f172a;
+    --brand-light: #f8fafc;
+    --brand-accent: #8b5cf6;
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    background-color: #f1f5f9;
+    color: #334155;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Навигация */
+.custom-navbar {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-navbar .navbar-brand {
+    font-weight: 700;
+    color: #38bdf8 !important;
+    letter-spacing: 0.5px;
+}
+
+.custom-navbar .nav-link {
+    font-weight: 500;
+    color: #cbd5e1 !important;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+/* Главный баннер / Hero */
+.hero-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+    color: #ffffff;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.hero-header h1 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Карточки */
+.custom-card {
+    border: none;
+    border-radius: 0.85rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.custom-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-header-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 600;
+}
+
+/* Демонстрация CSS стилей для Задания №3 */
+.css-showcase-box {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.css-showcase-box::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+}
+
+.css-badge-custom {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.css-badge-purple {
+    background-color: #ede9fe;
+    color: #6d28d9;
+}
+
+.css-badge-blue {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.css-badge-teal {
+    background-color: #ccfbf1;
+    color: #0f766e;
+}
+
+/* Таблицы */
+.custom-table {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.custom-table thead {
+    background-color: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* Подвал */
+.custom-footer {
+    margin-top: auto;
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 1.75rem 0;
+    border-top: 1px solid #1e293b;
+    font-size: 0.9rem;
+}
